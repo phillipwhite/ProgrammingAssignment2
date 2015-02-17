@@ -98,19 +98,24 @@ testMatrix <- function(x) {
 # 	print(solve(x))
 # 	print(cache_matrix$getInverse())
 # 	print("Completed test 5")
-	
+
+	test1 & test2 & test3 & test4 & test5 & test6 & test7 & test8	
 }
 
 testRunner <- function() {
 	x <- matrix(c(1, 0, 0, 1), nrow = 2, ncol = 2)
-	testMatrix(x)
+	test_matrix1 <- testMatrix(x)
 	
 	x <- matrix(1:4, nrow = 2, ncol = 2)
-	testMatrix(x)
+	test_matrix2 <- testMatrix(x)
 	
 	x <- matrix(runif(4), nrow = 2, ncol = 2)
-	testMatrix(x)
+	test_matrix3 <- testMatrix(x)
 	
 	x <- matrix(runif(100), nrow = 10, ncol = 10)
-	testMatrix(x)
+	test_matrix4 <- testMatrix(x)
+	
+	print(c(test_matrix1, test_matrix2, test_matrix3, test_matrix4))
+
+	test_matrix1 & test_matrix2 & test_matrix3 & test_matrix4
 }
