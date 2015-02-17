@@ -8,7 +8,7 @@ makeCacheMatrix <- function(x = matrix()) {
 	# which encapsulates (contains) both the matrix and its inverse
 	#
 	# Arguments:
-	#	x: a square invertible matrix
+	#	x: an invertible square matrix
 	#
 	# Returns:
 	#	A list of the accessor methods (get and set) for the matrix and its inverse
@@ -30,11 +30,13 @@ makeCacheMatrix <- function(x = matrix()) {
 	
 	setInverse <- function(inverse) {
 		x_inverse <<- inverse
-		# TODO insert call to cacheSolve here
-		#      but avoid infinite recursion.
 	}
 	
 	getInverse <- function() {
+		if ( is.null(x_inverse) ) {
+			print("makeCacheMatrix$getInverse(): Warning x_inverse is NULL")
+			print("        Should first call cacheSolve()")
+		}
 		x_inverse
 	}
 	
@@ -55,20 +57,20 @@ cacheSolve <- function(x, ...) {
 	# Arguments:
 	#	x: The 'CacheMatrix object' whose inverse is to be calculated
 	#	   This 'CacheMatrix object' must be created by the makeCacheMatrix function
-	#	...: other arguments for calcualting the matrix inverse
+	#	...: other arguments for calculating the matrix inverse
 	#
 	# Returns:
 	#	The inverse matrix of the 'CacheMatrix' object		
 	inverse <- x$getInverse()
 	
 	if ( is.null(inverse) ) {
-		message("cacheSolve: calculating the inverse of matrix")
+		message("cacheSolve(): calculating the inverse of the matrix")
 		the_matrix <- x$get()
 		inverse    <- solve(the_matrix, ...)
 		x$setInverse(inverse)
 			
 	} else {
-		message("cacheSolve: using cached inverse of matrix")
+		message("cacheSolve(): using the cached inverse of the matrix")
 	}
 
 	inverse	
