@@ -30,6 +30,8 @@ makeCacheMatrix <- function(x = matrix()) {
 	
 	setInverse <- function(inverse) {
 		x_inverse <<- inverse
+		# TODO insert call to cacheSolve here
+		#      but avoid infinite recursion.
 	}
 	
 	getInverse <- function() {
