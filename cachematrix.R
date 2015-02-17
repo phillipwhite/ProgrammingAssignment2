@@ -57,44 +57,47 @@ cacheSolve <- function(x, ...) {
 	inverse <- x$getInverse()
 	
 	if ( is.null(inverse) ) {		
-		message("cacheSolve(): calculating the inverse of the matrix")
+		#message("cacheSolve(): calculating the inverse of the matrix")
 		the_matrix <- x$get()
 		inverse    <- solve(the_matrix, ...)
 		x$setInverse(inverse)	
 	} else {
-		message("cacheSolve(): using the cached inverse of the matrix")
+		#message("cacheSolve(): using the cached inverse of the matrix")
 	}
 
 	inverse	
 }
 
 testMatrix <- function(x) {
-	print("Testing with new matrix")
-	#print(x)
+# 	print("Testing with new matrix")
+# 	print(x)
 	
 	cache_matrix <- makeCacheMatrix(x)
-	print(identical(cache_matrix$get(), x))
-	print(identical(cache_matrix$getInverse(), NULL))
-	print("Completed test 1")
+	test1 <- identical(cache_matrix$get(), x)
+	test2 <- identical(cache_matrix$getInverse(), NULL)
+# 	print("Completed tests 1, 2")
 	
 	cache_matrix$set(x)
-	print(identical(cache_matrix$get(), x))
-	print(identical(cache_matrix$getInverse(), NULL))
-	print("Completed test 2")
+	test3 <- identical(cache_matrix$get(), x)
+	test4 <- identical(cache_matrix$getInverse(), NULL)
+# 	print("Completed tests 3, 4")
 	
 	cache_matrix$setInverse(x)
-	print(identical(cache_matrix$getInverse(), x))
-	print(identical(cacheSolve(cache_matrix), x))
-	print("Completed test 3")
+	test5 <- identical(cache_matrix$getInverse(), x)
+	test6 <- identical(cacheSolve(cache_matrix), x)
+# 	print("Completed tests 5, 6")
 	
 	cache_matrix$setInverse(NULL)
-	print(identical(cache_matrix$getInverse(), NULL))
-	print(identical(cacheSolve(cache_matrix), solve(x)))
-	print("Completed test 4")
+	test7 <- identical(cache_matrix$getInverse(), NULL)
+	test8 <- identical(cacheSolve(cache_matrix), solve(x))
+# 	print("Completed tests 7, 8")
 	
-	#print(solve(x))
-	#print(cache_matrix$getInverse())
-	#print("Completed test 5")
+	print(c(test1, test2, test3, test4,
+		test5, test6, test7, test8))
+	
+# 	print(solve(x))
+# 	print(cache_matrix$getInverse())
+# 	print("Completed test 5")
 	
 }
 
@@ -111,5 +114,3 @@ testRunner <- function() {
 	x <- matrix(runif(100), nrow = 10, ncol = 10)
 	testMatrix(x)
 }
-
-
