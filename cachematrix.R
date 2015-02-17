@@ -67,3 +67,28 @@ cacheSolve <- function(x, ...) {
 
 	inverse	
 }
+
+
+testRunner <- function() {
+	x <- matrix(1:4, nrow = 2, ncol = 2)
+	textMatrix(x )
+	
+}
+
+testMatrix <- function(x) {
+	cache_matrix <- makeCacheMatrix(x)
+	identical(cache_matrix$get(), x)
+	identical(cache_matrix$getInverse(), NULL)
+	
+	cache_matrix$set(x)
+	identical(cache_matrix$get(), x)
+	identical(cache_matrix$getInverse(), NULL)
+	
+	cache_matrix$setInverse(x)
+	identical(cache_matrix$getinverse(), x)
+	identical(cacheSolve(x), x)
+	
+	cache_matrix$setInverse(NULL)
+	identical(cache_matrix$getinverse(), NULL)
+	identical(cache_matrix$getinverse(), solve(x))
+}
