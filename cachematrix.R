@@ -1,7 +1,7 @@
-## Put comments here that give an overall description of what your
-## functions do
+## These functions provide cached access to 
+##	the inverse of a square invertible matrix
 
-## Write a short comment describing this function
+## Constructs a CacheMatrix object which caches a matrix and its inverse
 
 makeCacheMatrix <- function(x = matrix()) {
 	# Constructs and returns a special 'CacheMatrix object' 
@@ -11,7 +11,8 @@ makeCacheMatrix <- function(x = matrix()) {
 	#	x: an invertible square matrix
 	#
 	# Returns:
-	#	A list of the accessor methods (get and set) for the matrix and its inverse
+	#	A list of the accessor methods (get and set) 
+	#	for the matrix and its inverse
 	
 	x_inverse <- NULL
 	
@@ -39,9 +40,7 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-
-
-## Write a short comment describing this function
+## Returns the matrix inverse of a CacheMatrix object
 
 cacheSolve <- function(x, ...) {
         # Returns a matrix that is the inverse of 'x'
@@ -68,7 +67,20 @@ cacheSolve <- function(x, ...) {
 	inverse	
 }
 
+
+## Tests the makeCacheMatrix and cacheSolve functions on a single matrix
+
 testMatrix <- function(x) {
+	# Runs a series of test on single matrix 
+	#	of the makeCacheMatrix and cacheSolve functions
+	# 	and prints results for each test
+	#
+	# Arguments: 
+	#	x: a square invertible matrix
+	#
+	# Returns:
+	#	TRUE if all tests pass, otherwise returns FALSE
+	
 # 	print("Testing with new matrix")
 # 	print(x)
 	
@@ -102,7 +114,16 @@ testMatrix <- function(x) {
 	test1 & test2 & test3 & test4 & test5 & test6 & test7 & test8	
 }
 
+
+## Tests the makeCacheMatrix and cacheSolve functions on several matrices single matrix
+
 testRunner <- function() {
+	# Runs a series of test on different matrices and
+	# 	prints test results for each matrix
+	#
+	# Returns:
+	#	TRUE if all tests pass, otherwise returns FALSE
+
 	x <- matrix(c(1, 0, 0, 1), nrow = 2, ncol = 2)
 	test_matrix1 <- testMatrix(x)
 	
