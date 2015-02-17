@@ -57,12 +57,12 @@ cacheSolve <- function(x, ...) {
 	inverse <- x$getInverse()
 	
 	if ( is.null(inverse) ) {		
-		#message("cacheSolve(): calculating the inverse of the matrix")
+		message("cacheSolve(): calculating the inverse of the matrix")
 		the_matrix <- x$get()
 		inverse    <- solve(the_matrix, ...)
 		x$setInverse(inverse)	
 	} else {
-		#message("cacheSolve(): using the cached inverse of the matrix")
+		message("cacheSolve(): using the cached inverse of the matrix")
 	}
 
 	inverse	
