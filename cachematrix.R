@@ -42,24 +42,25 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## Returns the matrix inverse of a CacheMatrix object
 
-cacheSolve <- function(x, ...) {
-        # Returns a matrix that is the inverse of 'x'
+cacheSolve <- function(cache_matrix, ...) {
+        # Calculates or obtains the cached inverse of a CacheMatrix object
 	#
 	# Arguments:
-	#	x: The 'CacheMatrix object' whose inverse is to be calculated
-	#	   This 'CacheMatrix object' must be created by the makeCacheMatrix function
+	#	cache_matrix: The 'CacheMatrix object' whose inverse is to be calculated
+	#	   This must be created by the makeCacheMatrix function
+	#
 	#	...: other arguments for calculating the matrix inverse
 	#
 	# Returns:
-	#	The inverse matrix of the 'CacheMatrix' object	
+	#	The  matrix inverse of the 'CacheMatrix object	
 	
-	inverse <- x$getInverse()
+	inverse <- cache_matrix$getInverse()
 	
 	if ( is.null(inverse) ) {		
 		message("cacheSolve(): calculating the inverse of the matrix")
-		the_matrix <- x$get()
+		the_matrix <- cache_matrix$get()
 		inverse    <- solve(the_matrix, ...)
-		x$setInverse(inverse)	
+		cache_matrix$setInverse(inverse)	
 	} else {
 		message("cacheSolve(): using the cached inverse of the matrix")
 	}
