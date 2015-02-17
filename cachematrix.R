@@ -68,27 +68,48 @@ cacheSolve <- function(x, ...) {
 	inverse	
 }
 
-
-testRunner <- function() {
-	x <- matrix(1:4, nrow = 2, ncol = 2)
-	textMatrix(x )
-	
-}
-
 testMatrix <- function(x) {
+	print("Testing with new matrix")
+	#print(x)
+	
 	cache_matrix <- makeCacheMatrix(x)
-	identical(cache_matrix$get(), x)
-	identical(cache_matrix$getInverse(), NULL)
+	print(identical(cache_matrix$get(), x))
+	print(identical(cache_matrix$getInverse(), NULL))
+	print("Completed test 1")
 	
 	cache_matrix$set(x)
-	identical(cache_matrix$get(), x)
-	identical(cache_matrix$getInverse(), NULL)
+	print(identical(cache_matrix$get(), x))
+	print(identical(cache_matrix$getInverse(), NULL))
+	print("Completed test 2")
 	
 	cache_matrix$setInverse(x)
-	identical(cache_matrix$getinverse(), x)
-	identical(cacheSolve(x), x)
+	print(identical(cache_matrix$getInverse(), x))
+	print(identical(cacheSolve(cache_matrix), x))
+	print("Completed test 3")
 	
 	cache_matrix$setInverse(NULL)
-	identical(cache_matrix$getinverse(), NULL)
-	identical(cache_matrix$getinverse(), solve(x))
+	print(identical(cache_matrix$getInverse(), NULL))
+	print(identical(cacheSolve(cache_matrix), solve(x)))
+	print("Completed test 4")
+	
+	#print(solve(x))
+	#print(cache_matrix$getInverse())
+	#print("Completed test 5")
+	
 }
+
+testRunner <- function() {
+	x <- matrix(c(1, 0, 0, 1), nrow = 2, ncol = 2)
+	testMatrix(x)
+	
+	x <- matrix(1:4, nrow = 2, ncol = 2)
+	testMatrix(x)
+	
+	x <- matrix(runif(4), nrow = 2, ncol = 2)
+	testMatrix(x)
+	
+	x <- matrix(runif(100), nrow = 10, ncol = 10)
+	testMatrix(x)
+}
+
+
