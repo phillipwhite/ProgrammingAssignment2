@@ -39,15 +39,22 @@ cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
 	inverse <- x$getInverse()
 	
-	if (!is.null(inverse)) {
-		message("getting cached inverse")
-		return(inverse)
-	}
+# 	if (!is.null(inverse)) {
+# 		message("getting cached inverse")
+# 		return(inverse)
+# 	}
 	
-	data    <- x$get()
-	inverse <- solve(x, ...)
-	x$setInverse(inverse)
-	inverse
+	if (is.null(inverse)) {
+		message("computing inverse")
+		data    <- x$get()
+		inverse <- solve(data, ...)
+		x$setInverse(inverse)
+			
+	} else {
+		message("using cached inverse")
+	}
+
+	inverse	
 }
 
 #cachemean <- function(x, ...) {
