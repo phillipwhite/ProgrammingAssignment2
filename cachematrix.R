@@ -33,10 +33,6 @@ makeCacheMatrix <- function(x = matrix()) {
 	}
 	
 	getInverse <- function() {
-		if ( is.null(x_inverse) ) {
-			print("makeCacheMatrix$getInverse(): Warning x_inverse is NULL")
-			print("        Should first call cacheSolve()")
-		}
 		x_inverse
 	}
 	
@@ -60,15 +56,15 @@ cacheSolve <- function(x, ...) {
 	#	...: other arguments for calculating the matrix inverse
 	#
 	# Returns:
-	#	The inverse matrix of the 'CacheMatrix' object		
+	#	The inverse matrix of the 'CacheMatrix' object	
+	
 	inverse <- x$getInverse()
 	
-	if ( is.null(inverse) ) {
+	if ( is.null(inverse) ) {		
 		message("cacheSolve(): calculating the inverse of the matrix")
 		the_matrix <- x$get()
 		inverse    <- solve(the_matrix, ...)
-		x$setInverse(inverse)
-			
+		x$setInverse(inverse)	
 	} else {
 		message("cacheSolve(): using the cached inverse of the matrix")
 	}
