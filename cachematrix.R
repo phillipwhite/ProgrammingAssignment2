@@ -12,10 +12,6 @@ makeCacheMatrix <- function(x = matrix()) {
 	#
 	# Returns:
 	#	A list of the accessor methods (get and set) for the matrix and its inverse
-	#
-	# Usage: 
-	#	Must call the cacheSolve function to cache the inverse of the matrix
-	#	before calling the getInverse() method	
 	
 	x_inverse <- NULL
 	
