@@ -40,6 +40,7 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
+
 ## Returns the matrix inverse of a CacheMatrix object
 
 cacheSolve <- function(cache_matrix, ...) {
@@ -67,6 +68,7 @@ cacheSolve <- function(cache_matrix, ...) {
 
 	inverse	
 }
+
 
 
 ## Tests the makeCacheMatrix and cacheSolve functions on a single matrix
@@ -114,6 +116,7 @@ testMatrix <- function(x) {
 
 	test1 & test2 & test3 & test4 & test5 & test6 & test7 & test8	
 }
+
 
 
 ## Tests the makeCacheMatrix and cacheSolve functions on several matrices single matrix
